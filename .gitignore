@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Configuración local de Claude Code (no compartir)
+.claude/settings.local.json
+
+# Editores
+.vscode/
+.idea/
+
+# Logs / temporales
+*.log

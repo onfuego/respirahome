@@ -1,0 +1,13 @@
+{
+  "name": "RespiraHome — Kinesiología a domicilio",
+  "short_name": "RespiraHome",
+  "description": "Kinesiología a domicilio en Santiago de Chile: respiratoria, rehabilitación y terapia manual.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f7c8a",
+  "lang": "es-CL",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
