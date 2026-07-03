@@ -130,8 +130,6 @@
       if (fuera && recargoFuera > 0) { total += recargoFuera; rows.push('<li><span>Recargo fuera de horario</span> <b>+' + clp(recargoFuera) + "</b></li>"); }
 
       totalEl.textContent = clp(total);
-      var stickyTotal = document.getElementById('q-sticky-total');
-      if (stickyTotal) stickyTotal.textContent = clp(total);
       breakdown.innerHTML = rows.join("");
 
       window.__respiraQuote = {

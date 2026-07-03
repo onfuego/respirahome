@@ -230,8 +230,9 @@
     },
     "quote": {
       "type": "quote",
+      "disabled": true,
       "custom_css": [
-        "input[type=\"checkbox\"] {width: 18px; height: 18px; margin-right: 12px; accent-color: #2B7A78; /* Cambia al color de tu marca */ flex-shrink: 0;}",
+        "input[type=\"checkbox\"] {width: 18px; height: 18px; margin-right: 12px; accent-color: #2b7a78; /* Cambia al color de tu marca */ flex-shrink: 0;}",
         "label:has(input[type=\"checkbox\"]) {display: flex; align-items: center; gap: 12px; cursor: pointer;}",
         "*/label:has(input[type=\"checkbox\"]) span {line-height: 1.4;}"
       ],
