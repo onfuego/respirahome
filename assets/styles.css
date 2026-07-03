@@ -223,11 +223,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; font-weigh
 }
 .field select:focus { outline: none; border-color: var(--teal-500); box-shadow: 0 0 0 4px rgba(23,162,176,.14); }
 .checks { display: grid; gap: 10px; }
-.check { display: flex; align-items: center; gap: 11px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; transition: border-color .15s, background .15s; }
-.check:hover { border-color: var(--teal-100); background: var(--teal-50); }
-.check input { width: 18px; height: 18px; accent-color: var(--teal-700); }
-.check .c-name { flex: 1; font-size: .95rem; }
-.check .c-price { font-weight: 700; color: var(--teal-700); font-size: .92rem; }
+.checks .check { display: flex; align-items: center; gap: 12px; margin: 0; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; font-weight: 400; color: var(--ink); transition: border-color .15s, background .15s; }
+.checks .check:hover { border-color: var(--teal-100); background: var(--teal-50); }
+.checks .check input { flex: 0 0 auto; width: 18px; height: 18px; margin: 0; accent-color: var(--teal-700); cursor: pointer; }
+.checks .check .c-name { flex: 1 1 auto; min-width: 0; font-size: .95rem; }
+.checks .check .c-price { flex: 0 0 auto; margin-left: auto; font-weight: 700; color: var(--teal-700); font-size: .92rem; white-space: nowrap; }
 
 .quote-result { background: linear-gradient(160deg, var(--teal-900), var(--teal-700)); color: #fff; border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); position: sticky; top: 92px; }
 .quote-label { font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: #a9d8dd; }
