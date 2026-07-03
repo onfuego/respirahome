@@ -1,0 +1,47 @@
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="{{ shop.name }} inicio">
+      {%- if settings.logo != blank -%}
+        <img src="{{ settings.logo | image_url: width: 80 }}" alt="Logo {{ shop.name }}" class="brand-logo" width="40" height="40">
+      {%- else -%}
+        <img src="{{ 'logo.svg' | asset_url }}" alt="Logo {{ shop.name }}" class="brand-logo" width="40" height="40">
+      {%- endif -%}
+      <span class="brand-name">{{ section.settings.brand_first }}<strong>{{ section.settings.brand_second }}</strong></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      {%- for link in section.blocks -%}
+        <a href="{{ link.settings.url }}" {{ link.shopify_attributes }}>{{ link.settings.label }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <a href="{% render 'wa-link' %}" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+      {% render 'icon-whatsapp' %} {{ section.settings.cta_label }}
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Encabezado",
+  "settings": [
+    { "type": "text", "id": "brand_first", "label": "Marca (primera parte)", "default": "Respira" },
+    { "type": "text", "id": "brand_second", "label": "Marca (segunda parte, en negrita)", "default": "Home" },
+    { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Agendar" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Enlace de menú",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texto", "default": "Servicios" },
+        { "type": "text", "id": "url", "label": "Enlace (ancla)", "default": "#servicios" }
+      ]
+    }
+  ]
+}
+{% endschema %}

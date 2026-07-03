@@ -1,0 +1,47 @@
+{
+  "current": {
+    "whatsapp_number": "56900000000",
+    "whatsapp_message": "¡Hola RespiraHome! Quiero agendar una sesión de kinesiología a domicilio.",
+    "phone_display": "+56 9 0000 0000",
+    "email": "contacto@respirahome.cl",
+    "instagram_url": "",
+    "facebook_url": "",
+    "hours_text": "Lunes a Domingo",
+    "hours_open": "08:00",
+    "hours_close": "18:00",
+    "after_hours_surcharge": 8000,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": { "brand_first": "Respira", "brand_second": "Home", "cta_label": "Agendar" },
+        "blocks": {
+          "l1": { "type": "link", "settings": { "label": "Servicios", "url": "#servicios" } },
+          "l2": { "type": "link", "settings": { "label": "Cobertura", "url": "#cobertura" } },
+          "l3": { "type": "link", "settings": { "label": "Cotizador", "url": "#cotizador" } },
+          "l4": { "type": "link", "settings": { "label": "Preguntas", "url": "#faq" } }
+        },
+        "block_order": ["l1", "l2", "l3", "l4"]
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "brand_first": "Respira",
+          "brand_second": "Home",
+          "about": "Kinesiología a domicilio en Santiago de Chile. Cuidado respiratorio, rehabilitación y terapia manual con cercanía y evidencia.",
+          "contact_heading": "Contacto",
+          "location": "Santiago, Región Metropolitana"
+        },
+        "blocks": {
+          "c1": {
+            "type": "links",
+            "settings": {
+              "heading": "Servicios",
+              "links": "Respiratoria adulto mayor | #servicios\nRespiratoria pediátrica | #servicios\nRehabilitación musculoesquelética | #servicios\nRehabilitación cardiopulmonar | #servicios\nTerapia manual ortopédica | #servicios"
+            }
+          }
+        },
+        "block_order": ["c1"]
+      }
+    }
+  }
+}

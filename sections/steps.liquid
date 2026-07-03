@@ -1,0 +1,39 @@
+<section class="section section-alt">
+  <div class="container">
+    <header class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </header>
+    <ol class="steps">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>
+          <span class="step-n">{{ forloop.index }}</span>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cómo funciona",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Cómo funciona" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Agendar es muy simple" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Escríbenos por WhatsApp" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Cuéntanos qué necesitas y en qué comuna estás." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Cómo funciona" }]
+}
+{% endschema %}

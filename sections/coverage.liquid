@@ -1,0 +1,72 @@
+<section id="{{ section.settings.anchor | default: 'cobertura' }}" class="section section-alt">
+  <div class="container">
+    <header class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="section-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </header>
+
+    <div class="zones-grid">
+      {%- for block in section.blocks -%}
+        {%- assign comunas = block.settings.comunas | newline_to_br | split: '<br />' -%}
+        <article class="zone-card" {{ block.shopify_attributes }}>
+          <div class="zone-head">
+            <h3>{{ block.settings.name }}</h3>
+            {%- if block.settings.surcharge > 0 -%}
+              <span class="zone-tag paid">+{% render 'clp', amount: block.settings.surcharge %}</span>
+            {%- else -%}
+              <span class="zone-tag free">Sin recargo</span>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.description != blank -%}<p class="zone-desc">{{ block.settings.description }}</p>{%- endif -%}
+          <div class="zone-comunas">
+            {%- for c in comunas -%}{%- assign cn = c | strip -%}{%- if cn != blank -%}<span>{{ cn }}</span>{%- endif -%}{%- endfor -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} Datos para el cotizador {%- endcomment -%}
+  <script id="data-zones" type="application/json">
+  [
+    {%- for block in section.blocks -%}
+      {%- assign comunas = block.settings.comunas | newline_to_br | split: '<br />' -%}
+      {
+        "nombre": {{ block.settings.name | json }},
+        "recargo": {{ block.settings.surcharge | default: 0 | json }},
+        "comunas": [
+          {%- assign first = true -%}
+          {%- for c in comunas -%}{%- assign cn = c | strip -%}{%- if cn != blank -%}{%- unless first -%},{%- endunless -%}{{ cn | json }}{%- assign first = false -%}{%- endif -%}{%- endfor -%}
+        ]
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Cobertura",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla (id)", "default": "cobertura" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Cobertura" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Llegamos a tu comuna en Santiago" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Operamos desde Ñuñoa. El valor final considera un recargo por distancia según la zona de tu comuna." }
+  ],
+  "blocks": [
+    {
+      "type": "zone",
+      "name": "Zona",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre de la zona", "default": "Zona 1" },
+        { "type": "number", "id": "surcharge", "label": "Recargo (CLP)", "default": 0 },
+        { "type": "text", "id": "description", "label": "Descripción corta", "default": "Ñuñoa y comunas colindantes." },
+        { "type": "textarea", "id": "comunas", "label": "Comunas (una por línea)", "default": "Ñuñoa\nProvidencia\nSantiago Centro\nMacul\nPeñalolén\nLa Reina\nSan Joaquín" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Cobertura" }]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+<section id="{{ section.settings.anchor | default: 'cotizador' }}" class="section">
+  <div class="container">
+    <header class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="section-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </header>
+
+    <div class="quote">
+      <form class="quote-form" id="quote-form">
+        <div class="field">
+          <label for="q-servicio">Servicio</label>
+          <select id="q-servicio"></select>
+        </div>
+        <div class="field" id="q-adicionales-wrap" hidden>
+          <label>Adicionales</label>
+          <div class="checks" id="q-adicionales"></div>
+        </div>
+        <div class="field">
+          <label for="q-comuna">Comuna</label>
+          <select id="q-comuna"></select>
+        </div>
+        <div class="field">
+          <label for="q-horario">Horario</label>
+          <select id="q-horario">
+            <option value="normal">Dentro de horario ({{ settings.hours_open }}–{{ settings.hours_close }})</option>
+            <option value="fuera">Fuera de horario (recargo)</option>
+          </select>
+        </div>
+      </form>
+
+      <aside class="quote-result" aria-live="polite">
+        <span class="quote-label">Valor estimado por sesión</span>
+        <div class="quote-total" id="q-total">$0</div>
+        <ul class="quote-breakdown" id="q-breakdown"></ul>
+        <a href="{% render 'wa-link' %}" class="btn btn-whatsapp btn-block" id="q-cta" target="_blank" rel="noopener" data-whatsapp-quote>
+          {% render 'icon-whatsapp' %} {{ section.settings.cta_label }}
+        </a>
+        <p class="quote-note">{{ section.settings.note }}</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cotizador",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla (id)", "default": "cotizador" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Cotizador" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Calcula el valor de tu sesión" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Una estimación referencial. El valor definitivo se confirma al agendar." },
+    { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Agendar esta sesión" },
+    { "type": "text", "id": "note", "label": "Nota", "default": "Valor referencial. No constituye cobro. Sujeto a confirmación." }
+  ],
+  "presets": [{ "name": "Cotizador" }]
+}
+{% endschema %}

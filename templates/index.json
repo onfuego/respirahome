@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "text": "Fonasa" } },
+        "b2": { "type": "badge", "settings": { "text": "Todas las Isapres" } },
+        "b3": { "type": "badge", "settings": { "text": "Particular" } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": {
+        "eyebrow": "Kinesiología a domicilio · Santiago",
+        "title": "Recupera tu respiración y movilidad",
+        "title_highlight": "en la comodidad de tu hogar",
+        "lead": "Profesionales que llegan a tu casa para el cuidado respiratorio del adulto mayor, terapia para bebés y niños, rehabilitación y terapia manual. Cercanía, seguridad y evidencia.",
+        "cta_primary": "Agendar por WhatsApp",
+        "cta_secondary": "Ver servicios",
+        "cta_secondary_url": "#servicios",
+        "visual_caption": "Respira. Nosotros vamos a ti."
+      }
+    },
+    "benefits": {
+      "type": "benefits",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "🏠", "title": "En tu hogar", "text": "Sin traslados ni salas de espera. El profesional llega a ti." } },
+        "b2": { "type": "benefit", "settings": { "icon": "🩺", "title": "Kinesiólogos titulados", "text": "Atención basada en evidencia y protocolos de seguridad." } },
+        "b3": { "type": "benefit", "settings": { "icon": "📅", "title": "Lun a Dom · 08–18h", "text": "Amplia disponibilidad, incluidos fines de semana." } },
+        "b4": { "type": "benefit", "settings": { "icon": "💳", "title": "Fonasa · Isapres", "text": "Atención particular y con todas las previsiones." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "services": {
+      "type": "services",
+      "blocks": {
+        "s1": {
+          "type": "service",
+          "settings": {
+            "name": "Kinesiología respiratoria — Adulto mayor",
+            "description": "Evaluación y tratamiento respiratorio domiciliario para el adulto mayor: higiene bronquial, técnicas de reeducación respiratoria y manejo de secreciones.",
+            "price": 28000, "icon": "lungs", "featured": true, "badge": "Más solicitado",
+            "adic_1_name": "Aspiración de secreciones", "adic_1_price": 6000,
+            "adic_2_name": "Nebulización", "adic_2_price": 4000
+          }
+        },
+        "s2": {
+          "type": "service",
+          "settings": {
+            "name": "Kinesiología respiratoria — Pediátrica",
+            "description": "Terapia respiratoria para bebés y niños: manejo de bronquiolitis, bronquitis y secreciones, con técnicas suaves y seguras a domicilio.",
+            "price": 28000, "icon": "baby", "featured": false
+          }
+        },
+        "s3": {
+          "type": "service",
+          "settings": {
+            "name": "Rehabilitación musculoesquelética",
+            "description": "Recuperación funcional de lesiones, post operatorios, dolor de espalda, rodilla y hombro mediante ejercicio terapéutico dirigido.",
+            "price": 27000, "icon": "muscle", "featured": false
+          }
+        },
+        "s4": {
+          "type": "service",
+          "settings": {
+            "name": "Rehabilitación cardiopulmonar",
+            "description": "Programa de reacondicionamiento para pacientes cardíacos y respiratorios crónicos, con monitoreo y progresión segura del esfuerzo.",
+            "price": 32000, "icon": "heart", "featured": false
+          }
+        },
+        "s5": {
+          "type": "service",
+          "settings": {
+            "name": "Terapia manual ortopédica",
+            "description": "Técnicas manuales especializadas para aliviar el dolor, mejorar la movilidad articular y tratar disfunciones musculoesqueléticas.",
+            "price": 30000, "icon": "hand", "featured": false
+          }
+        }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5"]
+    },
+    "coverage": {
+      "type": "coverage",
+      "blocks": {
+        "z1": { "type": "zone", "settings": { "name": "Zona 1", "surcharge": 0, "description": "Ñuñoa y comunas colindantes.", "comunas": "Ñuñoa\nProvidencia\nSantiago Centro\nMacul\nPeñalolén\nLa Reina\nSan Joaquín" } },
+        "z2": { "type": "zone", "settings": { "name": "Zona 2", "surcharge": 5000, "description": "Comunas de distancia media.", "comunas": "Las Condes\nVitacura\nLa Florida\nIndependencia\nRecoleta\nSan Miguel\nLa Cisterna\nEstación Central\nQuinta Normal\nPedro Aguirre Cerda\nLa Granja" } },
+        "z3": { "type": "zone", "settings": { "name": "Zona 3", "surcharge": 10000, "description": "Comunas más alejadas del sector oriente/centro.", "comunas": "Puente Alto\nMaipú\nQuilicura\nPudahuel\nHuechuraba\nLa Pintana\nEl Bosque\nCerrillos\nRenca\nConchalí\nLo Barnechea\nSan Bernardo\nLo Espejo\nCerro Navia\nSan Ramón" } }
+      },
+      "block_order": ["z1", "z2", "z3"]
+    },
+    "quote": { "type": "quote" },
+    "steps": {
+      "type": "steps",
+      "blocks": {
+        "p1": { "type": "step", "settings": { "title": "Escríbenos por WhatsApp", "text": "Cuéntanos qué necesitas y en qué comuna estás." } },
+        "p2": { "type": "step", "settings": { "title": "Coordinamos día y hora", "text": "Confirmamos profesional, valor y disponibilidad." } },
+        "p3": { "type": "step", "settings": { "title": "Atención en tu hogar", "text": "Llegamos a tu casa con todo lo necesario para tu sesión." } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "¿Atienden por Fonasa e Isapres?", "answer": "<p>Sí. Atendemos particular, Fonasa y todas las Isapres. Consúltanos por tu caso para orientarte sobre reembolsos y bonos.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "¿Cómo agendo una sesión?", "answer": "<p>Puedes agendar directamente por WhatsApp con el botón de esta página. Te confirmaremos horario y profesional a la brevedad.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "¿A qué comunas de Santiago llegan?", "answer": "" } },
+        "f4": { "type": "faq", "settings": { "question": "¿Cuánto dura una sesión?", "answer": "" } },
+        "f5": { "type": "faq", "settings": { "question": "¿Qué necesito tener en casa para la atención?", "answer": "" } },
+        "f6": { "type": "faq", "settings": { "question": "¿Puedo pedir atención de urgencia fuera de horario?", "answer": "" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {
+        "title": "¿List@ para agendar tu sesión?",
+        "text": "Escríbenos por WhatsApp y coordina tu atención kinésica a domicilio hoy mismo.",
+        "cta_label": "Agendar por WhatsApp"
+      }
+    }
+  },
+  "order": ["hero", "benefits", "services", "coverage", "quote", "steps", "faq", "cta"]
+}

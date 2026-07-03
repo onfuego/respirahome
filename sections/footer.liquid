@@ -1,0 +1,76 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="brand">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 72 }}" alt="Logo {{ shop.name }}" width="36" height="36">
+        {%- else -%}
+          <img src="{{ 'logo.svg' | asset_url }}" alt="Logo {{ shop.name }}" width="36" height="36">
+        {%- endif -%}
+        <span class="brand-name">{{ section.settings.brand_first }}<strong>{{ section.settings.brand_second }}</strong></span>
+      </a>
+      <p>{{ section.settings.about }}</p>
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'links' -%}
+        <div class="footer-col" {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.heading }}</h4>
+          <ul>
+            {%- assign items = block.settings.links | newline_to_br | split: '<br />' -%}
+            {%- for item in items -%}
+              {%- assign parts = item | strip | split: '|' -%}
+              {%- if parts.size >= 2 -%}
+                <li><a href="{{ parts[1] | strip }}">{{ parts[0] | strip }}</a></li>
+              {%- elsif parts[0] != blank -%}
+                <li>{{ parts[0] | strip }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    <div class="footer-col">
+      <h4>{{ section.settings.contact_heading }}</h4>
+      <ul>
+        <li><a href="{% render 'wa-link' %}" target="_blank" rel="noopener">WhatsApp</a></li>
+        {%- if settings.email != blank -%}<li><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></li>{%- endif -%}
+        <li>{{ settings.hours_text }} · {{ settings.hours_open }}–{{ settings.hours_close }}</li>
+        {%- if section.settings.location != blank -%}<li>{{ section.settings.location }}</li>{%- endif -%}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos los derechos reservados.</p>
+    <div class="social social-sm">
+      {%- if settings.instagram_url != blank -%}<a href="{{ settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+      {%- if settings.facebook_url != blank -%}<a href="{{ settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>{%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "settings": [
+    { "type": "text", "id": "brand_first", "label": "Marca (primera parte)", "default": "Respira" },
+    { "type": "text", "id": "brand_second", "label": "Marca (segunda parte)", "default": "Home" },
+    { "type": "textarea", "id": "about", "label": "Descripción", "default": "Kinesiología a domicilio en Santiago de Chile. Cuidado respiratorio, rehabilitación y terapia manual con cercanía y evidencia." },
+    { "type": "text", "id": "contact_heading", "label": "Título columna contacto", "default": "Contacto" },
+    { "type": "text", "id": "location", "label": "Ubicación", "default": "Santiago, Región Metropolitana" }
+  ],
+  "blocks": [
+    {
+      "type": "links",
+      "name": "Columna de enlaces",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Servicios" },
+        { "type": "textarea", "id": "links", "label": "Enlaces (uno por línea: Texto | #ancla)", "default": "Respiratoria adulto mayor | #servicios\nRespiratoria pediátrica | #servicios\nRehabilitación | #servicios\nTerapia manual | #servicios" }
+      ]
+    }
+  ],
+  "max_blocks": 3
+}
+{% endschema %}

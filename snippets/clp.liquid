@@ -1,0 +1,21 @@
+{%- comment -%}
+  Formatea un entero como precio chileno: 28000 -> $28.000
+  Uso: {% render 'clp', amount: block.settings.price %}
+{%- endcomment -%}
+{%- liquid
+  assign chars = amount | round | prepend: '' | split: ''
+  assign n = chars | size
+  assign out = ''
+  assign count = 0
+  for i in (1..n)
+    assign idx = n | minus: i
+    assign c = chars[idx]
+    assign out = c | append: out
+    assign count = count | plus: 1
+    if count == 3 and i < n
+      assign out = '.' | append: out
+      assign count = 0
+    endif
+  endfor
+-%}
+${{- out -}}

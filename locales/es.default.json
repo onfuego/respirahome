@@ -1,0 +1,13 @@
+{
+  "general": {
+    "page": "Página {{ page }}",
+    "meta": {
+      "tags": "Etiquetas: {{ tags }}"
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "text": "La página que buscas no existe.",
+      "link": "Volver al inicio"
+    }
+  }
+}

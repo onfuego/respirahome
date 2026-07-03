@@ -1,0 +1,39 @@
+<section id="{{ section.settings.anchor | default: 'agendar' }}" class="cta-final">
+  <div class="container cta-inner">
+    <h2>{{ section.settings.title }}</h2>
+    {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    <div class="cta-buttons">
+      <a href="{% render 'wa-link' %}" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+        {% render 'icon-whatsapp' %} {{ section.settings.cta_label }}
+      </a>
+    </div>
+
+    {%- if settings.instagram_url != blank or settings.facebook_url != blank -%}
+      <div class="social" aria-label="Redes sociales">
+        {%- if settings.instagram_url != blank -%}
+          <a href="{{ settings.instagram_url }}" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.82-.32 1.72C3.2 8.5 3.2 8.85 3.2 12s0 3.5.07 4.75c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.82.28 1.72.32 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.82.32-1.72.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.2-1.4-.32-1.72a2.85 2.85 0 00-.7-1.06 2.85 2.85 0 00-1.06-.7c-.32-.12-.82-.28-1.72-.32C15.5 4 15.15 4 12 4zm0 3.06A4.94 4.94 0 1112 17a4.94 4.94 0 010-9.88zm0 1.8a3.14 3.14 0 100 6.28 3.14 3.14 0 000-6.28zM17.6 6.4a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.facebook_url != blank -%}
+          <a href="{{ settings.facebook_url }}" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Llamado a la acción",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla (id)", "default": "agendar" },
+    { "type": "text", "id": "title", "label": "Título", "default": "¿List@ para agendar tu sesión?" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Escríbenos por WhatsApp y coordina tu atención kinésica a domicilio hoy mismo." },
+    { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Agendar por WhatsApp" }
+  ],
+  "presets": [{ "name": "Llamado a la acción" }]
+}
+{% endschema %}

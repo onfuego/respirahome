@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="theme-color" content="#0f7c8a">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64 }}">
+  {%- else -%}
+    <link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
+  {%- endif -%}
+
+  {%- comment -%} Título y descripción SEO {%- endcomment -%}
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &middot; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {%- comment -%} Fuentes {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  {{ 'styles.css' | asset_url | stylesheet_tag }}
+
+  {%- render 'seo-jsonld' -%}
+
+  {%- comment -%} REQUERIDO por Shopify: inyecta scripts, Open Graph, etc. {%- endcomment -%}
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ request.page_type | handle }}">
+  {%- comment -%} Datos para el JS del cotizador y WhatsApp {%- endcomment -%}
+  <script id="data-config" type="application/json">
+    {
+      "whatsapp": {{ settings.whatsapp_number | json }},
+      "whatsappMensaje": {{ settings.whatsapp_message | json }},
+      "recargoFueraHorario": {{ settings.after_hours_surcharge | default: 0 | json }}
+    }
+  </script>
+
+  {% section 'header' %}
+
+  <main id="main-content">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  {%- comment -%} Botón flotante de WhatsApp {%- endcomment -%}
+  <a href="{% render 'wa-link' %}" class="wa-float" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp">
+    {% render 'icon-whatsapp' %}
+  </a>
+
+  {{ 'theme.js' | asset_url | script_tag }}
+</body>
+</html>

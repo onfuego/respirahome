@@ -1,0 +1,50 @@
+<section id="{{ section.settings.anchor | default: 'faq' }}" class="section">
+  <div class="container container-narrow">
+    <header class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </header>
+
+    <div class="faq">
+      {%- for block in section.blocks -%}
+        {%- assign has_answer = false -%}
+        {%- if block.settings.answer != blank -%}{%- assign has_answer = true -%}{%- endif -%}
+        <div class="faq-item" {{ block.shopify_attributes }}>
+          <button class="faq-q" aria-expanded="false">
+            <span>{{ block.settings.question }}</span>
+            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner{% unless has_answer %} pending{% endunless %}">
+              {%- if has_answer -%}{{ block.settings.answer }}{%- else -%}{{ section.settings.pending_text }}{%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Preguntas frecuentes",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla (id)", "default": "faq" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Preguntas frecuentes" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Resolvemos tus dudas" },
+    { "type": "textarea", "id": "pending_text", "label": "Texto para respuestas vacías", "default": "Estamos preparando esta respuesta. Escríbenos por WhatsApp y te ayudamos de inmediato." }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Cómo agendo una sesión?" },
+        { "type": "richtext", "id": "answer", "label": "Respuesta (dejar vacío si aún no está)" }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [{ "name": "Preguntas frecuentes" }]
+}
+{% endschema %}

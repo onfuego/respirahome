@@ -1,0 +1,33 @@
+{%- comment -%} Datos estructurados para Google (negocio de salud local) {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": "{{ shop.url }}/#business",
+  "name": {{ shop.name | json }},
+  "description": {{ shop.description | default: 'Kinesiología a domicilio en Santiago de Chile: terapia respiratoria para adulto mayor y pediátrica, rehabilitación y terapia manual.' | json }},
+  "url": "{{ shop.url }}",
+  "logo": "{{ 'logo.svg' | asset_url | prepend: 'https:' }}",
+  "medicalSpecialty": "Physiotherapy",
+  "priceRange": "$$",
+  "currenciesAccepted": "CLP",
+  "paymentAccepted": "Efectivo, Transferencia, Fonasa, Isapre",
+  {%- if settings.instagram_url != blank or settings.facebook_url != blank -%}
+  "sameAs": [
+    {%- assign sameas = '' -%}
+    {%- if settings.instagram_url != blank %}{% assign sameas = sameas | append: settings.instagram_url | append: '||' %}{% endif -%}
+    {%- if settings.facebook_url != blank %}{% assign sameas = sameas | append: settings.facebook_url | append: '||' %}{% endif -%}
+    {%- assign parts = sameas | split: '||' -%}
+    {%- for p in parts -%}{{ p | json }}{%- unless forloop.last %},{% endunless -%}{%- endfor -%}
+  ],
+  {%- endif -%}
+  "areaServed": { "@type": "City", "name": "Santiago", "addressRegion": "Región Metropolitana", "addressCountry": "CL" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Ñuñoa", "addressRegion": "Región Metropolitana", "addressCountry": "CL" },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": {{ settings.hours_open | default: '08:00' | json }},
+    "closes": {{ settings.hours_close | default: '18:00' | json }}
+  }
+}
+</script>

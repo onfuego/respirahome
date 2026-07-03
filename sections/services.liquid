@@ -1,0 +1,94 @@
+<section id="{{ section.settings.anchor | default: 'servicios' }}" class="section">
+  <div class="container">
+    <header class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="section-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </header>
+
+    <div class="services-grid">
+      {%- for block in section.blocks -%}
+        <article class="service-card{% if block.settings.featured %} is-featured{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.featured and block.settings.badge != blank -%}<span class="service-badge">{{ block.settings.badge }}</span>{%- endif -%}
+          <div class="service-ico">{% render 'service-icon', icon: block.settings.icon %}</div>
+          <h3>{{ block.settings.name }}</h3>
+          <p>{{ block.settings.description }}</p>
+          <div class="service-price"><span class="amount">{% render 'clp', amount: block.settings.price %}</span><span class="per">/ sesión</span></div>
+
+          {%- if block.settings.adic_1_name != blank or block.settings.adic_2_name != blank -%}
+            <div class="service-adicionales">
+              <span class="title">Adicionales opcionales</span>
+              <ul>
+                {%- if block.settings.adic_1_name != blank -%}<li><span>{{ block.settings.adic_1_name }}</span> <b>+{% render 'clp', amount: block.settings.adic_1_price %}</b></li>{%- endif -%}
+                {%- if block.settings.adic_2_name != blank -%}<li><span>{{ block.settings.adic_2_name }}</span> <b>+{% render 'clp', amount: block.settings.adic_2_price %}</b></li>{%- endif -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.fineprint != blank -%}<p class="fineprint">{{ section.settings.fineprint }}</p>{%- endif -%}
+  </div>
+
+  {%- comment -%} Datos para el cotizador {%- endcomment -%}
+  <script id="data-services" type="application/json">
+  [
+    {%- for block in section.blocks -%}
+      {
+        "id": {{ block.id | json }},
+        "nombre": {{ block.settings.name | json }},
+        "precio": {{ block.settings.price | default: 0 | json }},
+        "adicionales": [
+          {%- if block.settings.adic_1_name != blank -%}{ "id": "{{ block.id }}-a1", "nombre": {{ block.settings.adic_1_name | json }}, "precio": {{ block.settings.adic_1_price | default: 0 | json }} }{%- endif -%}
+          {%- if block.settings.adic_1_name != blank and block.settings.adic_2_name != blank -%},{%- endif -%}
+          {%- if block.settings.adic_2_name != blank -%}{ "id": "{{ block.id }}-a2", "nombre": {{ block.settings.adic_2_name | json }}, "precio": {{ block.settings.adic_2_price | default: 0 | json }} }{%- endif -%}
+        ]
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Servicios",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla (id)", "default": "servicios" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Nuestros servicios" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Atención kinésica integral a domicilio" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Elige el servicio que necesitas. Todos incluyen evaluación inicial y plan de tratamiento personalizado." },
+    { "type": "textarea", "id": "fineprint", "label": "Nota al pie", "default": "* Precios base referenciales por sesión, sin recargo por distancia ni horario. Usa el cotizador para estimar tu valor final." }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Servicio",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Kinesiología respiratoria" },
+        { "type": "textarea", "id": "description", "label": "Descripción" },
+        { "type": "number", "id": "price", "label": "Precio base (CLP)", "default": 28000 },
+        {
+          "type": "select", "id": "icon", "label": "Ícono", "default": "lungs",
+          "options": [
+            { "value": "lungs", "label": "Pulmones (respiratorio)" },
+            { "value": "baby", "label": "Bebé (pediátrico)" },
+            { "value": "muscle", "label": "Músculo" },
+            { "value": "heart", "label": "Corazón (cardiopulmonar)" },
+            { "value": "hand", "label": "Mano (terapia manual)" }
+          ]
+        },
+        { "type": "checkbox", "id": "featured", "label": "Destacar (más solicitado)", "default": false },
+        { "type": "text", "id": "badge", "label": "Texto de la insignia", "default": "Más solicitado" },
+        { "type": "header", "content": "Adicionales opcionales" },
+        { "type": "text", "id": "adic_1_name", "label": "Adicional 1 — nombre" },
+        { "type": "number", "id": "adic_1_price", "label": "Adicional 1 — precio (CLP)", "default": 6000 },
+        { "type": "text", "id": "adic_2_name", "label": "Adicional 2 — nombre" },
+        { "type": "number", "id": "adic_2_price", "label": "Adicional 2 — precio (CLP)", "default": 4000 }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Servicios" }]
+}
+{% endschema %}

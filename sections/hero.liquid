@@ -1,0 +1,64 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h1>{{ section.settings.title }} <span class="hl">{{ section.settings.title_highlight }}</span></h1>
+      {%- if section.settings.lead != blank -%}<p class="lead">{{ section.settings.lead }}</p>{%- endif -%}
+
+      <div class="hero-cta">
+        <a href="{% render 'wa-link' %}" class="btn btn-whatsapp" target="_blank" rel="noopener">
+          {% render 'icon-whatsapp' %} {{ section.settings.cta_primary }}
+        </a>
+        {%- if section.settings.cta_secondary != blank -%}
+          <a href="{{ section.settings.cta_secondary_url }}" class="btn btn-ghost">{{ section.settings.cta_secondary }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="trust-badges" aria-label="Formas de atención">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}><span class="dot"></span> {{ block.settings.text }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="breath">
+        <div class="breath-ring r3"></div>
+        <div class="breath-ring r2"></div>
+        <div class="breath-ring r1"></div>
+        <div class="breath-core">
+          <svg viewBox="0 0 24 24"><path d="M12 3c-.6 0-1 .4-1 1v6.3c-.7-.5-1.6-.8-2.5-.8C6 9.5 4 11.6 4 14.2c0 3.1 2.4 5.3 5 6.6.3.1.6.1.9 0 .1 0 .1 0 .2-.1V4c0-.6-.5-1-1-1zm1 0c.6 0 1 .4 1 1v6.3c.7-.5 1.6-.8 2.5-.8 2.5 0 4.5 2.1 4.5 4.7 0 3.1-2.4 5.3-5 6.6-.3.1-.6.1-.9 0-.1 0-.1 0-.2-.1V4c0-.6.5-1 1-1z"/></svg>
+        </div>
+      </div>
+      {%- if section.settings.visual_caption != blank -%}<p class="breath-caption">{{ section.settings.visual_caption }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Kinesiología a domicilio · Santiago" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Recupera tu respiración y movilidad" },
+    { "type": "text", "id": "title_highlight", "label": "Título (parte destacada)", "default": "en la comodidad de tu hogar" },
+    { "type": "textarea", "id": "lead", "label": "Bajada", "default": "Profesionales que llegan a tu casa para el cuidado respiratorio del adulto mayor, terapia para bebés y niños, rehabilitación y terapia manual. Cercanía, seguridad y evidencia." },
+    { "type": "text", "id": "cta_primary", "label": "Botón principal (WhatsApp)", "default": "Agendar por WhatsApp" },
+    { "type": "text", "id": "cta_secondary", "label": "Botón secundario", "default": "Ver servicios" },
+    { "type": "text", "id": "cta_secondary_url", "label": "Enlace botón secundario", "default": "#servicios" },
+    { "type": "text", "id": "visual_caption", "label": "Frase bajo la animación", "default": "Respira. Nosotros vamos a ti." }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Insignia de confianza",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Fonasa" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

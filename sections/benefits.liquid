@@ -1,0 +1,30 @@
+<section class="strip">
+  <div class="container strip-grid">
+    {%- for block in section.blocks -%}
+      <div class="strip-item" {{ block.shopify_attributes }}>
+        <span class="strip-ico">{{ block.settings.icon }}</span>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Beneficios",
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji / ícono", "default": "🏠" },
+        { "type": "text", "id": "title", "label": "Título", "default": "En tu hogar" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Sin traslados ni salas de espera. El profesional llega a ti." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Beneficios" }]
+}
+{% endschema %}
