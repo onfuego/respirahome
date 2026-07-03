@@ -7,7 +7,6 @@
     <ol class="steps">
       {%- for block in section.blocks -%}
         <li {{ block.shopify_attributes }}>
-          <span class="step-n">{{ forloop.index }}</span>
           <h3>{{ block.settings.title }}</h3>
           <p>{{ block.settings.text }}</p>
         </li>
